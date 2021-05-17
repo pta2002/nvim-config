@@ -5,3 +5,6 @@ git clone https://github.com/wbthomason/packer.nvim\
 
 git clone https://github.com/Olical/aniseed\
  ~/.local/share/nvim/site/pack/packer/start/aniseed
+
+git clone https://github.com/tsbohc/zest.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/zest.nvim
