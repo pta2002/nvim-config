@@ -1,7 +1,7 @@
-(module nvim-config
+(module init
   {autoload {a aniseed.core
              n aniseed.nvim}
-   require-macros [:zest.macros]})
+   require-macros [:zest.macros :macros]})
 
 (require "plugins")
 
@@ -13,26 +13,7 @@
 (defn- map [keys exec extra]
   (vim.api.nvim_set_keymap "" keys exec (a.merge {:noremap true} extra)))
 
-(macro setup [plugin arg]
-  `(let [p# (require ,plugin)]
-     (p#.setup ,arg)))
-
-(macro set- [key val]
-  "Set option 'key' to value 'val' (adapted from zest.nvim)"
-  (let [key (tostring key)
-        val (if (= nil val) true val)
-        (ok? scope) (pcall (fn [] (. (vim.api.nvim_get_option_info key) :scope)))]
-    (if ok?
-      (match scope
-        :global `(vim.api.nvim_set_option ,key ,val)
-        :win    `(do
-                   (tset vim.o  ,key ,val)
-                   (tset vim.wo ,key ,val))
-        :buf    `(do
-                   (tset vim.o  ,key ,val)
-                   (tset vim.bo ,key ,val))))))
-
-(set- mouse   "a")    ;; Enable mouse usage
+(set- mouse   "a") ;; Enable mouse usage
 (set- number true) ;; Enable line numbers
 
 ;; Indentation stuff
@@ -43,6 +24,11 @@
 (set- autoindent true)
 (set- cindent    true)
 
+(set- linebreak  true) ;; Wrap lines
+(set- hidden     true) ;; Switch buffers without saving
+(set- splitright true) ;; Split to the right
+(set- splitdown  true) ;; Split down
+
 ;; Stuff for autocomplete
 (set- completeopt "menuone,noselect")
 
@@ -52,8 +38,21 @@
 
 ;; Keybinds
 (map "ç" ":") ;; Convenience thing for portuguese keyboards
+(set n.g.mapleader " ")
+(set n.g.maplocalleader n.g.mapleader)
 
-;; Some things for barbar
+;; Set j and k to move by visual lines
+(map "j" "gj")
+(map "k" "gk")
+
+(local wk (require "which-key"))
+(wk.register
+  {:f {:name "file"
+       :f ["<cmd>Telescope find_files<cr>" "Find file"]
+       :g ["<cmd>Telescope live_grep<cr>" "Grep in files"]}}
+  {:prefix "<leader>"})
+
+; Some things for barbar
 (nmap "<A-,>" ":BufferPrevious<CR>" {:silent true})
 (nmap "<A-.>" ":BufferNext<CR>"     {:silent true})
 (nmap "<A-1>" ":BufferGoto 1<CR>"   {:silent true})
@@ -72,6 +71,9 @@
 (imap "<CR>" "compe#confirm(lexima#expand('<LT>CR>', 'i'))" {:silent true :expr true})
 (imap "<C-e>" "compe#close('<C-e>')" {:silent true :expr true})
 
+;; Intellitab
+(imap "<Tab>" "<CMD>lua require('intellitab').indent()<CR>")
+
 ;; Plugin stuff
 (setup :lualine {:options {:theme "tokyonight"}})
 (setup :nvim-treesitter.configs
@@ -79,13 +81,26 @@
         :highlight {:enable true}})
 
 (setup :compe {:enable true
-                :autocomplete true
-                :source {:nvim_lsp true}})
+               :autocomplete true
+               :source {:nvim_lsp true
+                        :nvim_lua true}})
 
 (setup :trouble {})
 
 (let [lsp (require "lspconfig")]
-  (lsp.clangd.setup {}))
+  (lsp.clangd.setup {})
+  (lsp.hls.setup {})
+  (lsp.sumneko_lua.setup {:cmd ["/home/pta2002/sources/lua-language-server/bin/Linux/lua-language-server" "-E"
+                                "/home/pta2002/sources/lua-language-server/main.lua"]
+                          :settings {:Lua {:runtime {:version "LuaJIT"
+                                                     :path (vim.split package.path ";")}
+                                           :diagnostics {:globals ["vim"]}
+                                           :workspace {:library
+                                                       {(vim.fn.expand "$VIMRUNTIME/lua") true
+                                                        (vim.fn.expand "$VIMRUNTIME/lua/vim/lsp") true}}
+                                           :telemetry {:enable false}}}}))
 
 (g- vim_markdown_folding_disabled 1)
 (g- vim_markdown_math 1)
+
+(g- sexp_filetypes "clojure,scheme,lisp,timl,fennel")
