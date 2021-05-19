@@ -29,6 +29,8 @@
 (set- splitright true) ;; Split to the right
 (set- splitdown  true) ;; Split down
 
+(set- showmode false) ;; Don't show the modeline
+
 ;; Stuff for autocomplete
 (set- completeopt "menuone,noselect")
 
