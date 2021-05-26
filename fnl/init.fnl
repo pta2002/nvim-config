@@ -89,18 +89,30 @@
 
 (setup :trouble {})
 
+(defn lsp_setup [client bufnr]
+  (exec- "autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+  ;; Set some keybindings
+  (wk.register
+    {:l {:name "LSP"
+         :f ["<cmd>lua vim.lsp.buf.formatting()<CR>" "Format file"]
+         :a ["<cmd>lua vim.lsp.buf.code_action()<CR>" "Code actions"]
+         :r ["<cmd>lua vim.lsp.buf.rename()<CR>" "Rename"]}}
+    {:prefix "<leader>"}))
+
 (let [lsp (require "lspconfig")]
-  (lsp.clangd.setup {})
-  (lsp.hls.setup {})
-  (lsp.sumneko_lua.setup {:cmd ["/home/pta2002/sources/lua-language-server/bin/Linux/lua-language-server" "-E"
-                                "/home/pta2002/sources/lua-language-server/main.lua"]
-                          :settings {:Lua {:runtime {:version "LuaJIT"
-                                                     :path (vim.split package.path ";")}
-                                           :diagnostics {:globals ["vim"]}
-                                           :workspace {:library
-                                                       {(vim.fn.expand "$VIMRUNTIME/lua") true
-                                                        (vim.fn.expand "$VIMRUNTIME/lua/vim/lsp") true}}
-                                           :telemetry {:enable false}}}}))
+  (lsp.clangd.setup {:on_attach lsp_setup})
+  (lsp.hls.setup {:on_attach lsp_setup})
+  (lsp.sumneko_lua.setup
+    {:cmd ["/home/pta2002/sources/lua-language-server/bin/Linux/lua-language-server" "-E"
+           "/home/pta2002/sources/lua-language-server/main.lua"]
+     :on_attach lsp_setup
+     :settings {:Lua {:runtime {:version "LuaJIT"
+                                :path (vim.split package.path ";")}
+                      :diagnostics {:globals ["vim"]}
+                      :workspace {:library
+                                  {(vim.fn.expand "$VIMRUNTIME/lua") true
+                                   (vim.fn.expand "$VIMRUNTIME/lua/vim/lsp") true}}
+                      :telemetry {:enable false}}}}))
 
 (g- vim_markdown_folding_disabled 1)
 (g- vim_markdown_math 1)
