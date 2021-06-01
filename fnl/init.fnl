@@ -92,6 +92,7 @@
 (defn lsp_setup [client bufnr]
   (exec- "autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
   ;; Set some keybindings
+  (nmap "K" "<cmd>lua vim.lsp.buf.hover()<CR>")
   (wk.register
     {:l {:name "LSP"
          :f ["<cmd>lua vim.lsp.buf.formatting()<CR>" "Format file"]
