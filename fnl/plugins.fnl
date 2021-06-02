@@ -35,7 +35,7 @@
 
   ;; Eye candy
   (use "hoob3rt/lualine.nvim")
-  (use "folke/tokyonight.nvim")
+  (use "eddyekofo94/gruvbox-flat.nvim")
   (use "kyazdani42/nvim-web-devicons")
   (use "romgrk/barbar.nvim")
 

@@ -36,7 +36,7 @@
 
 ;; Use 24-bit color, and the tokyonight colorscheme
 (set- termguicolors true)
-(colo- :tokyonight)
+(colo- :gruvbox-flat)
 
 ;; Keybinds
 (map "ç" ":") ;; Convenience thing for portuguese keyboards
@@ -77,7 +77,7 @@
 (imap "<Tab>" "<CMD>lua require('intellitab').indent()<CR>")
 
 ;; Plugin stuff
-(setup :lualine {:options {:theme "tokyonight"}})
+(setup :lualine {:options {:theme "gruvbox-flat"}})
 (setup :nvim-treesitter.configs
        {:ensure_installed "maintained"
         :highlight {:enable true}})
