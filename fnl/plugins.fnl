@@ -32,6 +32,7 @@
          (which-key.setup {})))
   (use "tpope/vim-sleuth")
   (use "pta2002/intellitab.nvim")
+  (use "kyazdani42/nvim-tree.lua")
 
   ;; Eye candy
   (use "hoob3rt/lualine.nvim")
@@ -49,6 +50,8 @@
   (use "Olical/conjure")
   (use "neovimhaskell/haskell-vim")
   (use "guns/vim-sexp")
+  (use "alx741/yesod.vim")
+  (use "pbrisbin/vim-syntax-shakespeare")
 
   ;; LSP
   (use "neovim/nvim-lspconfig")

@@ -51,7 +51,8 @@
 (wk.register
   {:f {:name "file"
        :f ["<cmd>Telescope find_files<cr>" "Find file"]
-       :g ["<cmd>Telescope live_grep<cr>" "Grep in files"]}}
+       :g ["<cmd>Telescope live_grep<cr>" "Grep in files"]
+       :t ["<cmd>NvimTreeToggle<cr>" "Toggle file tree"]}}
   {:prefix "<leader>"})
 
 ; Some things for barbar
