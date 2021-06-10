@@ -27,7 +27,7 @@
 (set- linebreak  true) ;; Wrap lines
 (set- hidden     true) ;; Switch buffers without saving
 (set- splitright true) ;; Split to the right
-(set- splitdown  true) ;; Split down
+(set- splitbelow true) ;; Split down
 
 (set- showmode false) ;; Don't show the modeline
 
@@ -36,6 +36,7 @@
 
 ;; Use 24-bit color, and the tokyonight colorscheme
 (set- termguicolors true)
+
 (colo- :gruvbox-flat)
 
 ;; Keybinds
