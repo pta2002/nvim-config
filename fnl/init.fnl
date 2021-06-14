@@ -53,7 +53,9 @@
   {:f {:name "file"
        :f ["<cmd>Telescope find_files<cr>" "Find file"]
        :g ["<cmd>Telescope live_grep<cr>" "Grep in files"]
-       :t ["<cmd>NvimTreeToggle<cr>" "Toggle file tree"]}}
+       :t ["<cmd>NvimTreeToggle<cr>" "Toggle file tree"]}
+   :e {:name "current buffer"
+       :f ["<cmd>Limelight!!<cr><cmd>Goyo<cr>" "Toggle focus mode"]}}
   {:prefix "<leader>"})
 
 ; Some things for barbar

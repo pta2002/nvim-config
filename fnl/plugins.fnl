@@ -39,6 +39,8 @@
   (use "eddyekofo94/gruvbox-flat.nvim")
   (use "kyazdani42/nvim-web-devicons")
   (use "romgrk/barbar.nvim")
+  (use "junegunn/limelight.vim")
+  (use "junegunn/Goyo.vim")
 
   ;; Git
   (use "airblade/vim-gitgutter")
@@ -47,7 +49,7 @@
   (use "nvim-treesitter/nvim-treesitter")
   (use "LnL7/vim-nix")
   (use "plasticboy/vim-markdown")
-  (use "Olical/conjure")
+  ; (use "Olical/conjure")
   (use "neovimhaskell/haskell-vim")
   (use "guns/vim-sexp")
   (use "alx741/yesod.vim")
