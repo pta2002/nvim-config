@@ -37,7 +37,7 @@
 ;; Use 24-bit color, and the tokyonight colorscheme
 (set- termguicolors true)
 
-(colo- :gruvbox-flat)
+(vim.cmd "colorscheme gruvbox-flat")
 
 ;; Keybinds
 (map "ç" ":") ;; Convenience thing for portuguese keyboards
@@ -119,7 +119,7 @@
                                    (vim.fn.expand "$VIMRUNTIME/lua/vim/lsp") true}}
                       :telemetry {:enable false}}}}))
 
-(g- vim_markdown_folding_disabled 1)
-(g- vim_markdown_math 1)
+(set vim.g.vim_markdown_folding_disabled 1)
+(set vim.g.vim_markdown_math 1)
 
-(g- sexp_filetypes "clojure,scheme,lisp,timl,fennel")
+(set vim.g.sexp_filetypes "clojure,scheme,lisp,timl,fennel")

@@ -17,19 +17,19 @@
   (use "cohama/lexima.vim")
   (use "hrsh7th/nvim-compe")
   (use "folke/trouble.nvim")
-  (pa- "folke/todo-comments.nvim"
+  (use {1 "folke/todo-comments.nvim"
        :requires [["folke/todo-comments.nvim"]]
        :config
        (fn []
          (local todo-comments (require "todo-comments"))
-         (todo-comments.setup {:highlight {:before "fg"}})))
-  (pa- "nvim-telescope/telescope.nvim"
-       :requires [["nvim-lua/popup.nvim"] ["nvim-lua/plenary.nvim"]])
-  (pa- "folke/which-key.nvim"
+         (todo-comments.setup {:highlight {:before "fg"}}))})
+  (use {1 "nvim-telescope/telescope.nvim"
+       :requires [["nvim-lua/popup.nvim"] ["nvim-lua/plenary.nvim"]]})
+  (use {1 "folke/which-key.nvim"
        :config
        (fn []
          (local which-key (require "which-key"))
-         (which-key.setup {})))
+         (which-key.setup {}))})
   (use "tpope/vim-sleuth")
   (use "pta2002/intellitab.nvim")
   (use "kyazdani42/nvim-tree.lua")
@@ -58,8 +58,8 @@
   ;; LSP
   (use "neovim/nvim-lspconfig")
   (use "mfussenegger/nvim-jdtls")
-  (pa- "onsails/lspkind-nvim"
+  (use {1 "onsails/lspkind-nvim"
        :config 
        (fn []
          (local lk (require "lspkind"))
-         (lk.init {:with_text false})))))
+         (lk.init {:with_text false}))})))
