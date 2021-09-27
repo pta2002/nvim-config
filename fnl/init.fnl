@@ -94,7 +94,7 @@
 (setup :trouble {})
 
 (defn lsp_setup [client bufnr]
-  (exec- "autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+  (vim.cmd "autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
   ;; Set some keybindings
   (nmap "K" "<cmd>lua vim.lsp.buf.hover()<CR>")
   (wk.register
@@ -107,6 +107,7 @@
 (let [lsp (require "lspconfig")]
   (lsp.clangd.setup {:on_attach lsp_setup})
   (lsp.hls.setup {:on_attach lsp_setup})
+  (lsp.rls.setup {:on_attach lsp_setup})
   (lsp.sumneko_lua.setup
     {:cmd ["/home/pta2002/sources/lua-language-server/bin/Linux/lua-language-server" "-E"
            "/home/pta2002/sources/lua-language-server/main.lua"]

@@ -32,7 +32,11 @@
          (which-key.setup {}))})
   (use "tpope/vim-sleuth")
   (use "pta2002/intellitab.nvim")
-  (use "kyazdani42/nvim-tree.lua")
+  (use {1 "kyazdani42/nvim-tree.lua"
+        :config
+        (fn []
+          (local nvim-tree (require "nvim-tree"))
+          (nvim-tree.setup {}))})
 
   ;; Eye candy
   (use "hoob3rt/lualine.nvim")
