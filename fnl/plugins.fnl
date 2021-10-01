@@ -62,6 +62,9 @@
   ;; LSP
   (use "neovim/nvim-lspconfig")
   (use "mfussenegger/nvim-jdtls")
+  (use {1 "weilbith/nvim-code-action-menu"
+        :cmd "CodeActionMenu"})
+  (use "kosayoda/nvim-lightbulb")
   (use {1 "onsails/lspkind-nvim"
        :config 
        (fn []

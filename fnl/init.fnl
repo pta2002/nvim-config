@@ -30,9 +30,11 @@
 (set- splitbelow true) ;; Split down
 
 (set- showmode false) ;; Don't show the modeline
+(set- hlsearch false) ;; Don't highlight after searching
 
 ;; Stuff for autocomplete
 (set- completeopt "menuone,noselect")
+(set- updatetime 10) ;; Update CursorHold every 10ms
 
 ;; Use 24-bit color, and the tokyonight colorscheme
 (set- termguicolors true)
@@ -95,19 +97,20 @@
 
 (defn lsp_setup [client bufnr]
   (vim.cmd "autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+  (vim.cmd "autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()")
   ;; Set some keybindings
   (nmap "K" "<cmd>lua vim.lsp.buf.hover()<CR>")
   (wk.register
     {:l {:name "LSP"
          :f ["<cmd>lua vim.lsp.buf.formatting()<CR>" "Format file"]
-         :a ["<cmd>lua vim.lsp.buf.code_action()<CR>" "Code actions"]
+         :a ["<cmd>:CodeActionMenu<CR>" "Code actions"]
          :r ["<cmd>lua vim.lsp.buf.rename()<CR>" "Rename"]}}
     {:prefix "<leader>"}))
 
 (let [lsp (require "lspconfig")]
   (lsp.clangd.setup {:on_attach lsp_setup})
   (lsp.hls.setup {:on_attach lsp_setup})
-  (lsp.rls.setup {:on_attach lsp_setup})
+  (lsp.rust_analyzer.setup {:on_attach lsp_setup})
   (lsp.sumneko_lua.setup
     {:cmd ["/home/pta2002/sources/lua-language-server/bin/Linux/lua-language-server" "-E"
            "/home/pta2002/sources/lua-language-server/main.lua"]
