@@ -1,6 +1,5 @@
 (module plugins
-  {require {p packer}
-   require-macros [:zest.macros]})
+  {require {p packer}})
 
 ;; TODO: Move plugin configuration over here
 
@@ -8,7 +7,6 @@
   ;; Config stuff
   (use "wbthomason/packer.nvim")
   (use "Olical/aniseed")
-  (use "tsbohc/zest.nvim")
 
   ;; Utilities
   (use "godlygeek/tabular")
@@ -58,6 +56,7 @@
   (use "guns/vim-sexp")
   (use "alx741/yesod.vim")
   (use "pbrisbin/vim-syntax-shakespeare")
+  (use "p00f/nvim-ts-rainbow")
 
   ;; LSP
   (use "neovim/nvim-lspconfig")
