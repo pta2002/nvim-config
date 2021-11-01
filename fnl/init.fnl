@@ -17,10 +17,10 @@
                   :extended_mode true
                   :max_file_lines nil}})
 
-(setup :compe {:enable true
-               :autocomplete true
-               :source {:nvim_lsp true
-                        :nvim_lua true}})
+(let [coq (require :coq_3p)]
+  (coq [{:src :copilot
+         :short_name "COP"
+         :tmp_accept_key "<c-r>"}]))
 
 (setup :trouble {})
 

@@ -50,6 +50,8 @@
   ;; Languages
   (use "nvim-treesitter/nvim-treesitter")
   (use "LnL7/vim-nix")
+  (use "hashivim/vim-terraform")
+  (use "hashivim/vim-nomadproject")
   (use "plasticboy/vim-markdown")
   ; (use "Olical/conjure")
   (use "neovimhaskell/haskell-vim")
@@ -60,6 +62,10 @@
 
   ;; LSP
   (use "neovim/nvim-lspconfig")
+  (use "github/copilot.vim")
+  (use "ms-jpq/coq_nvim")
+  (use "ms-jpq/coq.thirdparty")
+  (use "hrsh7th/cmp-nvim-lsp")
   (use "mfussenegger/nvim-jdtls")
   (use {1 "weilbith/nvim-code-action-menu"
         :cmd "CodeActionMenu"})
