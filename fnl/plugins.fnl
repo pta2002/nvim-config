@@ -53,7 +53,6 @@
   (use "hashivim/vim-terraform")
   (use "hashivim/vim-nomadproject")
   (use "plasticboy/vim-markdown")
-  ; (use "Olical/conjure")
   (use "neovimhaskell/haskell-vim")
   (use "guns/vim-sexp")
   (use "alx741/yesod.vim")
@@ -65,13 +64,16 @@
   (use "github/copilot.vim")
   (use "ms-jpq/coq_nvim")
   (use "ms-jpq/coq.thirdparty")
-  (use "hrsh7th/cmp-nvim-lsp")
   (use "mfussenegger/nvim-jdtls")
   (use {1 "weilbith/nvim-code-action-menu"
         :cmd "CodeActionMenu"})
   (use "kosayoda/nvim-lightbulb")
+  (use {1 "scalameta/nvim-metals" :requires ["nvim-lua/plenary.nvim"]})
   (use {1 "onsails/lspkind-nvim"
        :config 
        (fn []
          (local lk (require "lspkind"))
          (lk.init {:with_text false}))})))
+
+(local packer_compiled (.. (vim.fn.stdpath :config) "/plugin/packer_compiled.lua"))
+(vim.cmd (.. "luafile" packer_compiled))

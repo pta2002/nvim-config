@@ -25,6 +25,7 @@
 
 (let [lsp (require "lspconfig")]
   (lsp.clangd.setup (coq {:on_attach lsp_setup}))
+  (lsp.pyright.setup (coq {:on_attach lsp_setup}))
   (lsp.hls.setup (coq {:on_attach lsp_setup}))
   (lsp.rust_analyzer.setup (coq {:on_attach lsp_setup}))
   (lsp.zls.setup (coq {:on_attach lsp_setup}))
@@ -42,6 +43,12 @@
                                    (vim.fn.expand "$VIMRUNTIME/lua/vim/lsp") true}}
                       :telemetry {:enable false}}}}))
 
+(global init_metals
+  (fn []
+    (local metals (require "metals"))
+    (metals.initialize_or_attach (coq {:on_attach lsp_setup}))))
 
-
-
+(vim.cmd "augroup lsp")
+(vim.cmd "au!")
+(vim.cmd "au FileType scala,sbt lua init_metals()")
+(vim.cmd "augroup end")

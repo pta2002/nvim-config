@@ -20,7 +20,7 @@
 (let [coq (require :coq_3p)]
   (coq [{:src :copilot
          :short_name "COP"
-         :tmp_accept_key "<c-r>"}]))
+         :tmp_accept_key "<c-e>"}]))
 
 (setup :trouble {})
 
